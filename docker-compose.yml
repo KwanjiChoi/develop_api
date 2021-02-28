@@ -1,0 +1,40 @@
+version: '3'
+
+volumes:
+  db-data:
+  redis:
+  bundle:
+  node_modules:
+
+services:
+  web:
+    build: .
+    command: >
+      bash -c "rm -f tmp/pids/server.pid &&
+               bundle exec rails s -p 3000 -b '0.0.0.0'"
+    ports:
+      - '3000:3000'
+    volumes:
+      - '.:/api_rails'
+      - 'bundle:/usr/local/bundle:cached'
+      - 'node_modules:/api_rails/node_modules'
+      - '/api_rails/vendor'
+      - '/api_rails/tmp'
+      - '/api_rails/log'
+      - '/api_rails/.git'
+    environment:
+      - 'MYSQL_PASSWORD=mysql'
+    tty: true
+    stdin_open: true
+    depends_on:
+      - db
+    links:
+      - db
+  
+  db:
+    image: mysql:latest
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      - 'MYSQL_ROOT_PASSWORD=mysql'
+    volumes:
+      - 'db-data:/var/lib/mysql'
