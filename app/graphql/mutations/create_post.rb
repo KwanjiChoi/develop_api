@@ -1,7 +1,7 @@
 module Mutations
   class CreatePost < BaseMutation
     field :post, Types::PostType, null: true
-    field :resule, Boolean, null: true
+    field :result, Boolean, null: true
 
     argument :title, String, required: false
     argument :description, String, required: false

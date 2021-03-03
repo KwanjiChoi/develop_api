@@ -1,14 +1,17 @@
 module Mutations
   class CreateUser < BaseMutation
-    # TODO: define return fields
-    # field :post, Types::PostType, null: false
+    field :user, Types::UserType, null: true
+    field :result, Boolean, null: true
 
-    # TODO: define arguments
-    # argument :name, String, required: true
+    argument :name, String, required: false
+    argument :email, String, required: false
 
-    # TODO: define resolve method
-    # def resolve(name:)
-    #   { post: ... }
-    # end
+    def resolve(**args)
+      user = User.create(name: args[:name], email: args[:email])
+      {
+        user: user,
+        result: user.errors.blank?
+      }
+    end
   end
 end
