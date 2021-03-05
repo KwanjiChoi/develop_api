@@ -25,3 +25,21 @@ app/assets/config/manifest.js
 //= link graphiql/rails/application.js
 
 ```
+
+
+## 便利gem
+
+```
+gem 'graphql-batch'
+```
+
+1:Nの関連テーブルのデータも取ってくる事ができるが、DBへの問い合わせが大量に発生してしまう場合があり。
+問い合わせをまとめてバッチ処理するgem
+
+
+```
+gem 'graphdoc-ruby'
+```
+
+スキーマファイルから良い感じのドキュメントを自動で生成するGem
+
