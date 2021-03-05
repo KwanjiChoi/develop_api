@@ -1,5 +1,5 @@
 module Queries
-  class User < Queries::BaseQuery
+  class User < BaseQuery
     description 'Find an user by ID'
 
     argument :id, ID, required: true
@@ -7,7 +7,7 @@ module Queries
     type Types::UserType, null: false
 
     def resolve(id:)
-      ::User.find(id)
+      User.find(id)
     end
   end
 end
