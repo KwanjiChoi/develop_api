@@ -36,6 +36,8 @@ gem 'graphql-batch'
 1:Nの関連テーブルのデータも取ってくる事ができるが、DBへの問い合わせが大量に発生してしまう場合があり。
 問い合わせをまとめてバッチ処理するgem
 
+N+1問題が多発するのでgraphql-batchを使うか、QueryのFieldsの定義でincludesを書きましょう。
+
 
 ```
 gem 'graphdoc-ruby'
@@ -44,4 +46,5 @@ gem 'graphdoc-ruby'
 ~~スキーマファイルから良い感じのドキュメントを自動で生成するGem~~
 
 最終更新が3年前のため非推奨
+yarnで使うのが良き
 
