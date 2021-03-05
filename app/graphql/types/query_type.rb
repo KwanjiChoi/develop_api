@@ -1,10 +1,15 @@
 module Types
   class QueryType < Types::BaseObject
-    field :posts, [Types::PostType], null: false
+    field :posts, [Types::PostType], null: false do
+      argument :title, String, required: false
+    end
     def posts
       Post.all
     end
 
+    def posts(title:)
+      Post.where('title LIKE ?', "%#{title}%")
+    end
 
     field :post, Types::PostType, null: false do
       description 'gets post informations'
